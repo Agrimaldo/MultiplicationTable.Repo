@@ -1,0 +1,37 @@
+<div class="mat-elevation-z8">
+  <mat-card class="main-card">
+    <mat-card-content>
+      <form class="input-form">
+        <mat-form-field class="input-full-width">
+          <mat-label>Digite os números separados por vírgula</mat-label>
+          <input matInput placeholder="Ex. 1 ou 1,2" [formControl]="numberList" required>
+          @if (numberList.invalid) {
+          <mat-error>{{getErrorMessage()}}</mat-error>
+          }
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="Primary" (click)="SendNumbersClick()">Calcular</button>
+    </mat-card-actions>
+  </mat-card>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  <p *ngFor="let calculate of calculateList">
+    <mat-card role="group" class="sub-card">
+      <mat-card-title>tabuada do {{ calculate.number }}</mat-card-title>
+      <mat-card-content>
+        <mat-list role="list">
+          <mat-list-item role="listitem" *ngFor="let content of calculate.multiplicationTable">
+            {{ calculate.number }} x {{ content.item1 }} = {{ content.item2 }}
+          </mat-list-item>
+
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <br />
+  </p>
+</div>
+
